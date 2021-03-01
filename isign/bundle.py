@@ -244,11 +244,11 @@ class App(Bundle):
         # Maybe we should determine entitlements data in isign/archive.py or even isign/isign.py,
         # and then embed it into Signer?
 
+        # copy the provisioning profile in
+        self.provision(provisioning_profile)
+
         # In the typical case, we add entitlements from the pprof into the app's signature
         if alternate_entitlements_path is None:
-            # copy the provisioning profile in
-            self.provision(provisioning_profile)
-
             entitlements = self.extract_entitlements(provisioning_profile)
         else:
             log.info("signing with alternative entitlements: {}".format(alternate_entitlements_path))
